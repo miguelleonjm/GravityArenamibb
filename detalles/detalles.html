@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Torneo</title>
+    <link rel="stylesheet" href="../home/home.css">
+    <link rel="stylesheet" href="detalles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="main-nav">
+          <div class="logo-container"><img src="../imagenes/logo 1adm blanco y negro.png" alt="Logo Gravity" class="logo-img"></div>
+          <ul class="nav-links">
+              <li><a href="../home/home.html" class="nav-link">Inicio</a></li>
+              <li><a href="../torneos/torneos.html" class="nav-link">Torneos</a></li>
+              <li><a href="../tienda/tienda.html" class="nav-link">Tienda</a></li>
+              <li><a href="../billetera/billetera.html" class="nav-link">Billetera</a></li>
+              <li><a href="../mi-equipo/mi-equipo.html" class="nav-link">Mi Equipo</a></li>
+          </ul>
+          <div class="profile-section">
+            <div class="profile-icon-container" id="profile-icon">
+              <img id="header-pfp" alt="Foto de perfil" class="header-profile-pic"><i id="header-default-icon" class="fas fa-user-circle profile-icon"></i>
+            </div>
+            <div class="profile-dropdown" id="profile-dropdown">
+              <div class="profile-info">
+                <img id="dropdown-pfp" alt="Foto de perfil" class="dropdown-profile-pic">
+                <div class="user-details">
+                  <span id="username-display" class="username">Cargando...</span><span id="email-display" class="email"></span>
+                </div>
+              </div>
+              <ul class="dropdown-menu">
+                <li><a href="../perfil/perfil.html"><i class="fas fa-user"></i> Ver Perfil</a></li>
+                <li><a href="#"><i class="fas fa-trophy"></i> Historial de Torneos</a></li>
+                <li><a href="#"><i class="fas fa-shopping-cart"></i> Historial de Compras</a></li>
+                <li id="logout-btn"><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+    </header>
+
+    <main class="details-page-container">
+        <div id="detail-banner" class="detail-banner">
+            <div class="banner-overlay">
+                <h1 id="detail-title">Cargando Torneo...</h1>
+                <p id="detail-game"></p>
+                <div class="banner-meta">
+                    <span>Cuota de Ingreso</span>
+                    <strong id="detail-cost"></strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="details-content">
+            <div class="tabs-navigation">
+                <button class="tab-link active" data-tab="tab-details">Detalles</button>
+                <button class="tab-link" data-tab="tab-tracking">Seguimiento</button>
+                <button class="tab-link" data-tab="tab-prizes">Premios</button>
+            </div>
+
+            <div class="tab-content active" id="tab-details">
+                <div class="info-grid">
+                    <div class="info-item"><span>Formato</span><strong id="detail-format"></strong></div>
+                    <div class="info-item"><span>Plataforma</span><strong id="detail-platform"></strong></div>
+                    <div class="info-item"><span>Tipo de Llave</span><strong id="detail-mode"></strong></div>
+                    <div class="info-item"><span>Participantes</span><strong id="detail-slots"></strong></div>
+                </div>
+                <div class="content-section">
+                    <h2>Descripción</h2>
+                    <p id="detail-description"></p>
+                </div>
+                <div class="content-section">
+                    <h2>Reglas</h2>
+                    <ul id="rules-list" class="rules-list"></ul>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-tracking">
+                <ul id="timeline-list" class="timeline"></ul>
+            </div>
+
+            <div class="tab-content" id="tab-prizes">
+                <div class="content-section">
+                    <h2>Premios en Dinero</h2>
+                    <div id="money-prizes-list" class="prizes-grid"></div>
+                </div>
+                 <div class="content-section">
+                    <h2>Bolsa de Puntos</h2>
+                    <div id="points-pool-section" class="points-pool-card"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="inscription-footer">
+            <button id="inscription-btn" class="register-button-main hidden">Cargando...</button>
+            <button id="withdraw-btn" class="register-button-main withdraw-btn hidden">Retirarse del Torneo</button>
+        </div>
+    </main>
+
+    <div id="no-team-modal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <button class="close-modal-btn" data-close-modal="no-team-modal">&times;</button>
+            <div class="modal-header-payment">
+                <h2><i class="fas fa-users-slash"></i> Aún no tienes un equipo</h2>
+                <p>Para inscribirte en un torneo, primero debes crear o unirte a un equipo.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="../mi-equipo/mi-equipo.html" class="btn-primary">Ir a Mi Equipo</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirm-inscription-modal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <button class="close-modal-btn" data-close-modal="confirm-inscription-modal">&times;</button>
+            <div class="modal-header-payment">
+                <h2>Confirmar Equipo</h2>
+                <p>Revisa los datos de la escuadra que luchará por la gloria.</p>
+            </div>
+            <div class="modal-body">
+                <div class="team-confirmation-details">
+                    <img id="confirm-team-logo" src="https://placehold.co/100x100/2a2a2e/FFF?text=..." alt="Logo del Equipo" class="team-logo-confirm">
+                    <h3 id="confirm-team-name">Nombre del Equipo</h3>
+                    
+                    <div class="members-section">
+                        <h4><i class="fas fa-users"></i> Integrantes</h4>
+                        <ul id="confirm-team-members" class="team-members-list"></ul>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="leader-whatsapp">Tu N° de WhatsApp (Líder)</label>
+                        <div class="input-with-icon">
+                            <i class="fab fa-whatsapp"></i>
+                            <input type="tel" id="leader-whatsapp" placeholder="987654321" maxlength="9">
+                            <i class="fas fa-check-circle validation-icon" id="whatsapp-valid-icon"></i>
+                        </div>
+                        <small>Necesario para coordinaciones del torneo.</small>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm-and-proceed-btn" class="btn-primary" disabled>
+                    <i class="fas fa-arrow-right"></i> Siguiente
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="wallet-payment-modal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <button class="close-modal-btn" data-close-modal="wallet-payment-modal">&times;</button>
+            <div class="modal-header-payment">
+                <h2><i class="fas fa-wallet"></i> Confirmar Pago</h2>
+                <p>Usa tu saldo para unirte a la batalla.</p>
+            </div>
+            <div class="modal-body">
+                <div class="payment-summary">
+                    <div class="summary-item">
+                        <span><i class="fas fa-piggy-bank"></i> Tu Saldo Actual:</span>
+                        <strong id="wallet-balance">S/ 0.00</strong>
+                    </div>
+                    <div class="summary-item cost">
+                        <span><i class="fas fa-ticket-alt"></i> Costo de Inscripción:</span>
+                        <strong id="wallet-cost">- S/ 0.00</strong>
+                    </div>
+                    <hr class="summary-divider">
+                    <div class="summary-item total">
+                        <span><i class="fas fa-calculator"></i> Saldo Restante:</span>
+                        <strong id="wallet-remaining">S/ 0.00</strong>
+                    </div>
+                </div>
+                <p id="insufficient-funds-msg" class="insufficient-funds hidden">
+                    <i class="fas fa-exclamation-triangle"></i> No tienes saldo suficiente.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirm-wallet-payment-btn" class="btn-primary">
+                    <span class="btn-text"><i class="fas fa-lock"></i> Confirmar y Pagar</span>
+                    <span class="btn-loader"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirm-withdraw-modal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <button class="close-modal-btn" data-close-modal="confirm-withdraw-modal">&times;</button>
+            <div class="modal-header-payment">
+                <h2>¿Seguro que quieres retirarte?</h2>
+                <p style="color: #FFC300; font-weight: 500;">Esta acción es irreversible y la cuota de inscripción no será reembolsada.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-withdraw-btn" class="btn-secondary">Cancelar</button>
+                <button id="confirm-withdraw-action-btn" class="btn-danger">Sí, retirar mi equipo</button>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module" src="detalles-app.js"></script>
+</body>
+</html>

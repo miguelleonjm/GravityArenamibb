@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil - Gravity Tournaments</title>
+    <link rel="stylesheet" href="../home/home.css">
+    <link rel="stylesheet" href="perfil.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+      <nav class="main-nav">
+        <div class="logo-container">
+          <img src="../imagenes/logo 1adm blanco y negro.png" alt="Logo Gravity" class="logo-img">
+        </div>
+        <ul class="nav-links">
+          <li><a href="../home/home.html" class="nav-link">Inicio</a></li>
+          <li><a href="../torneos/torneos.html" class="nav-link">Torneos</a></li>
+          <li><a href="../tienda/tienda.html" class="nav-link">Tienda</a></li>
+          <li><a href="../billetera/billetera.html" class="nav-link">Billetera</a></li>
+          <li><a href="../mi-equipo/mi-equipo.html" class="nav-link">Mi Equipo</a></li>
+      </ul>
+        <div class="profile-section">
+        <div class="profile-icon-container" id="profile-icon">
+          <img id="header-pfp" alt="Foto de perfil" class="header-profile-pic hidden">
+          <i id="header-default-icon" class="fas fa-user-circle profile-icon"></i>
+        </div>
+        <div class="profile-dropdown" id="profile-dropdown">
+          <div class="profile-info">
+            <img id="dropdown-pfp" alt="Foto de perfil" class="dropdown-profile-pic">
+            <div class="user-details">
+              <span id="username-display" class="username">Cargando...</span>
+              <span id="email-display" class="email"></span>
+            </div>
+          </div>
+          <ul class="dropdown-menu">
+            <li><a href="../perfil/perfil.html"><i class="fas fa-user"></i> Ver Perfil</a></li>
+            <li><a href="#"><i class="fas fa-trophy"></i> Historial de Torneos</a></li>
+            <li><a href="#"><i class="fas fa-shopping-cart"></i> Historial de Compras</a></li>
+            <li id="logout-btn"><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+          </ul>
+        </div>
+      </div>
+      </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="profile-container">
+            <h1 class="page-title">Mi Perfil</h1>
+            
+            <form id="profile-form" class="profile-form">
+                <div class="pfp-section">
+                    <img id="pfp-preview" src="https://placehold.co/150x150/1A1A1A/A8A8A8?text=Foto" alt="Vista previa del perfil">
+                    <input type="file" id="pfp-input" accept="image/*" class="hidden-input">
+                    <label for="pfp-input" class="pfp-change-btn">
+                        <i class="fas fa-camera"></i> Cambiar Foto
+                    </label>
+                </div>
+
+                <div class="fields-section">
+                    <div class="input-group">
+                        <label for="username">Nombre de Usuario</label>
+                        <input type="text" id="username" placeholder="Tu nombre de usuario" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" placeholder="tu@correo.com" disabled>
+                        <small>El correo electrónico no se puede cambiar.</small>
+                    </div>
+                     <div class="input-group">
+                        <label for="phone">Número de Teléfono</label>
+                        <input type="tel" id="phone" placeholder="Ej: 987654321">
+                    </div>
+                    <button type="submit" id="save-btn" class="save-button">Guardar Cambios</button>
+                    <p id="success-message" class="success-message"></p>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script type="module" src="perfil-app.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+.profile-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    background-color: var(--background-container);
+    padding: 2rem 3rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.page-title {
+    text-align: center;
+    font-family: 'Azonix', sans-serif;
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin-bottom: 2.5rem;
+}
+
+.profile-form {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+/* Sección de la foto de perfil */
+.pfp-section {
+    flex-shrink: 0;
+    text-align: center;
+}
+
+#pfp-preview {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.hidden-input {
+    display: none;
+}
+
+.pfp-change-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.pfp-change-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--background-main);
+}
+
+/* Sección de los campos */
+.fields-section {
+    flex-grow: 1;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background-color: #0D0D0D;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(167, 0, 255, 0.2);
+}
+
+.input-group input:disabled {
+    background-color: #2a2a2a;
+    cursor: not-allowed;
+}
+
+.input-group small {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 0.3rem;
+}
+
+.save-button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background-color: var(--accent-color);
+    color: var(--background-main);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+.save-button:hover {
+    filter: brightness(1.2);
+}
+.save-button:disabled {
+    background-color: #555;
+    cursor: wait;
+}
+
+.success-message {
+    color: #2ECC71; /* verde éxito */
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 500;
+    display: none; /* Oculto por defecto */
+}

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador - Gravity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="text-gray-200 font-sans">
+
+    <div id="admin-container" class="hidden h-screen flex">
+        <aside class="w-64 p-6 flex flex-col">
+            <div class="flex items-center gap-3 mb-10">
+                <i data-lucide="shield" class="w-8 h-8 text-white"></i>
+                <h1 class="text-2xl font-bold text-white">Admin Panel</h1>
+            </div>
+            <nav class="flex-1">
+                <ul class="space-y-2">
+                    <li><a href="#" data-section="dashboard" class="nav-link active"><i data-lucide="layout-dashboard"></i><span>Dashboard</span></a></li>
+                    <li><a href="#" data-section="inscriptions" class="nav-link"><i data-lucide="clipboard-check"></i><span>Inscripciones</span></a></li>
+                    <li><a href="#" data-section="control" class="nav-link"><i data-lucide="sliders-horizontal"></i><span>Control de Torneos</span></a></li>
+                    <li><a href="#" data-section="tournaments" class="nav-link"><i data-lucide="swords"></i><span>Gestionar Torneos</span></a></li>
+                    <li><a href="#" data-section="shop" class="nav-link"><i data-lucide="shopping-cart"></i><span>Gestionar Tienda</span></a></li>
+                    <li><a href="#" data-section="users" class="nav-link"><i data-lucide="users"></i><span>Gestionar Usuarios</span></a></li>
+                    <li><a href="#" data-section="codes" class="nav-link"><i data-lucide="gift"></i><span>Códigos de Canje</span></a></li>
+                    <li><a href="#" data-section="purchases" class="nav-link"><i data-lucide="receipt"></i><span>Historial de Compras</span></a></li>
+                    <li><a href="#" data-section="claims" class="nav-link"><i data-lucide="trophy"></i><span>Reclamos de Premios</span></a></li>
+                </ul>
+            </nav>
+            <div>
+                <button id="admin-logout-btn" class="w-full flex items-center justify-center gap-2 text-red-400 hover:bg-red-500/10 p-3 rounded-lg transition-colors">
+                    <i data-lucide="log-out" class="w-5 h-5"></i>
+                    <span>Cerrar Sesión</span>
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1 p-8 overflow-y-auto">
+            <section id="dashboard-section" class="admin-section">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-800">Dashboard</h2>
+                    <div class="search-box">
+                        <i data-lucide="search" class="search-icon"></i>
+                        <input type="text" placeholder="Buscar...">
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="widget-card kpi-card">
+                        <div class="kpi-icon-container" style="background-color: #E0E7FF;">
+                            <i data-lucide="users" style="color: #4F46E5;"></i>
+                        </div>
+                        <div>
+                            <p class="kpi-label">Usuarios Totales</p>
+                            <p id="kpi-total-users" class="kpi-value">...</p>
+                        </div>
+                    </div>
+                    <div class="widget-card kpi-card">
+                        <div class="kpi-icon-container" style="background-color: #D1FAE5;">
+                            <i data-lucide="swords" style="color: #059669;"></i>
+                        </div>
+                        <div>
+                            <p class="kpi-label">Torneos Activos</p>
+                             <p id="kpi-active-tournaments" class="kpi-value">...</p>
+                        </div>
+                    </div>
+                    <div class="widget-card kpi-card">
+                        <div class="kpi-icon-container" style="background-color: #FEF3C7;">
+                            <i data-lucide="dollar-sign" style="color: #D97706;"></i>
+                        </div>
+                        <div>
+                            <p class="kpi-label">Ingresos (Mes)</p>
+                             <p id="kpi-monthly-revenue" class="kpi-value">...</p>
+                        </div>
+                    </div>
+                    <div class="widget-card chart-card-large">
+                        <div class="widget-header">
+                            <h3>Actividad de Usuarios</h3>
+                            <select class="widget-select"><option>Últimos 7 días</option></select>
+                        </div>
+                        <div class="widget-body">
+                            <canvas id="userActivityChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="widget-card">
+                        <div class="widget-header">
+                            <h3>Torneos Recientes</h3>
+                        </div>
+                        <div id="recent-tournaments-list" class="widget-body">
+                             <p class="text-center p-4 text-gray-400">Cargando...</p>
+                        </div>
+                    </div>
+                     <div class="widget-card">
+                        <div class="widget-header">
+                            <h3>Progreso de Inscripciones</h3>
+                        </div>
+                         <div id="enrollment-progress-widget" class="widget-body">
+                             <p class="text-center p-4 text-gray-400">Cargando...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="control-section" class="admin-section hidden">
+                <div id="tournament-selector-view">
+                    <h2 class="text-3xl font-bold mb-6">Control de Torneos</h2>
+                    <h3 class="text-xl font-bold text-indigo-600 mb-4">Selecciona un torneo para gestionar</h3>
+                    <div id="active-tournaments-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                </div>
+                <div id="tournament-control-panel" class="hidden">
+                    <button id="back-to-selector-btn" class="btn-secondary mb-6 flex items-center gap-2">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                        <span>Volver a la selección</span>
+                    </button>
+                    <div class="content-card p-8 rounded-xl shadow-lg">
+                        <div class="flex flex-col md:flex-row justify-between md:items-start mb-6 gap-4">
+                             <div>
+                                <h3 id="control-panel-title" class="text-2xl font-bold text-gray-800 mb-2"></h3>
+                                <p id="control-panel-game" class="text-indigo-600 font-semibold"></p>
+                             </div>
+                             <div id="control-panel-actions" class="flex items-center gap-4">
+                                <button id="finalize-tournament-btn" class="btn-primary">Finalizar y Repartir Premios</button>
+                             </div>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-800 mb-4">Equipos Inscritos</h4>
+                        <div id="enrolled-teams-container" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="inscriptions-section" class="admin-section hidden">
+                <h2 class="text-3xl font-bold mb-6">Gestionar Inscripciones Pendientes</h2>
+                <div class="content-card rounded-xl shadow-lg overflow-hidden">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="p-4 text-left">Torneo</th><th class="p-4 text-left">Equipo</th><th class="p-4 text-left">Líder (Contacto)</th><th class="p-4 text-left">Datos del Pago</th><th class="p-4 text-center">Estado</th><th class="p-4 text-right">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inscriptions-list"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="tournaments-section" class="admin-section hidden">
+                <h2 class="text-3xl font-bold mb-6">Gestionar Torneos</h2>
+                <div class="content-card p-8 rounded-xl shadow-lg">
+                    <h3 id="form-title" class="text-xl font-bold text-indigo-600 mb-6">Crear Nuevo Torneo</h3>
+                    <form id="tournament-form" class="space-y-4">
+                        <input type="hidden" id="tournament-id">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label for="tournament-name" class="block text-sm font-medium mb-1">Nombre del Torneo</label><input type="text" id="tournament-name" required></div><div><label for="tournament-game" class="block text-sm font-medium mb-1">Juego</label><select id="tournament-game" required><option value="Free Fire">Free Fire</option><option value="Clash Royale">Clash Royale</option><option value="League of Legends">League of Legends</option><option value="Valorant">Valorant</option><option value="Mobile Legends">Mobile Legends</option><option value="Otro">Otro</option></select></div></div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label for="tournament-mode" class="block text-sm font-medium mb-1">Tipo de Llave (Modo)</label><select id="tournament-mode" required><option value="1vs1">1vs1</option><option value="2vs2">2vs2</option><option value="5vs5">5vs5</option><option value="Solo">Solo</option></select></div><div><label for="tournament-platform" class="block text-sm font-medium mb-1">Plataforma</label><select id="tournament-platform" required><option value="Mobile">Mobile</option><option value="PC">PC</option><option value="Consola">Consola</option></select></div></div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label for="tournament-format" class="block text-sm font-medium mb-1">Formato</label><select id="tournament-format" required><option value="Single Elimination">Single Elimination</option><option value="Double Elimination">Double Elimination</option><option value="Fase de Grupos">Fase de Grupos</option></select></div><div><label for="tournament-cost" class="block text-sm font-medium mb-1">Costo (S/)</label><input type="number" id="tournament-cost" required placeholder="0 si es gratis"></div></div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label for="tournament-slots" class="block text-sm font-medium mb-1">Cupos Totales</label><input type="number" id="tournament-slots" required></div><div><label for="tournament-status" class="block text-sm font-medium mb-1">Estado del Torneo</label><select id="tournament-status" required><option value="inscripciones_abiertas">Inscripciones Abiertas</option><option value="en_curso">En Curso</option><option value="finalizado">Finalizado</option></select></div></div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label for="tournament-close-date" class="block text-sm font-medium mb-1">Cierre de Inscripciones</label><input type="datetime-local" id="tournament-close-date" required></div><div><label for="tournament-start-date" class="block text-sm font-medium mb-1">Fecha de Inicio del Torneo</label><input type="datetime-local" id="tournament-start-date" required></div></div>
+                        <div><label for="tournament-description" class="block text-sm font-medium mb-1">Descripción Corta</label><textarea id="tournament-description" rows="2"></textarea></div>
+                        <div><label for="tournament-rules" class="block text-sm font-medium mb-1">Reglas (separadas por ";")</label><textarea id="tournament-rules" rows="3"></textarea></div>
+                        <div class="pt-4 border-t border-gray-200">
+                            <h4 class="text-lg font-semibold text-indigo-600 mb-4">Configuración de Premios</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <div><label for="prize-money-first" class="block text-sm font-medium mb-1">1er Puesto (S/)</label><input type="number" step="0.01" id="prize-money-first" placeholder="0"></div>
+                                <div><label for="prize-money-second" class="block text-sm font-medium mb-1">2do Puesto (S/)</label><input type="number" step="0.01" id="prize-money-second" placeholder="0"></div>
+                                <div><label for="prize-money-third" class="block text-sm font-medium mb-1">3er Puesto (S/)</label><input type="number" step="0.01" id="prize-money-third" placeholder="0"></div>
+                            </div>
+                            <div class="mt-4">
+                                <label for="prize-points-pool" class="block text-sm font-medium mb-1">Puntos Gravity a Repartir</label>
+                                <input type="number" id="prize-points-pool" placeholder="Ej: 10000">
+                                <p class="text-xs text-gray-500 mt-1">Estos puntos se repartirán entre todos los participantes según su avance.</p>
+                            </div>
+                        </div>
+                        <div><label for="tournament-image" class="block text-sm font-medium mb-1">Imagen del Banner del Torneo</label><input type="file" id="tournament-image" accept="image/*"></div>
+                        <div class="flex justify-end gap-4 pt-4"><button type="button" id="cancel-edit-btn" class="btn-secondary hidden">Cancelar</button><button type="submit" id="submit-tournament-btn" class="btn-primary">Crear Torneo</button></div>
+                    </form>
+                </div>
+                <div class="mt-12">
+                    <h3 class="text-xl font-bold mb-6">Torneos Existentes</h3>
+                    <div class="content-card rounded-xl shadow-lg overflow-hidden">
+                        <table class="w-full">
+                            <thead class="bg-gray-50"><tr><th class="p-4 text-left">Nombre</th><th class="p-4 text-left">Juego</th><th class="p-4 text-center">Inscritos / Cupos</th><th class="p-4 text-right">Acciones</th></tr></thead>
+                            <tbody id="tournaments-list"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="shop-section" class="admin-section hidden">
+                 <h2 class="text-3xl font-bold mb-6">Gestionar Tienda</h2>
+                <div class="content-card p-8 rounded-xl shadow-lg">
+                    <h3 id="shop-form-title" class="text-xl font-bold text-indigo-600 mb-6">Crear Nuevo Artículo</h3>
+                    <form id="shop-item-form" class="space-y-4">
+                        <input type="hidden" id="shop-item-id">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label for="item-name" class="block text-sm font-medium mb-1">Nombre del Artículo</label><input type="text" id="item-name" required></div><div><label for="item-category" class="block text-sm font-medium mb-1">Categoría</label><select id="item-category"><option value="Skins">Skins</option><option value="Diamantes">Diamantes</option><option value="Pases">Pases de Batalla</option><option value="Merch">Merchandising</option></select></div></div>
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div><label for="item-price-real" class="block text-sm font-medium mb-1">Precio Dinero Real (S/)</label><input type="number" step="0.01" id="item-price-real" placeholder="0 si no aplica"></div><div><label for="item-price-points" class="block text-sm font-medium mb-1">Precio Puntos Gravity</label><input type="number" id="item-price-points" placeholder="0 si no aplica"></div></div>
+                        <div><label for="item-description" class="block text-sm font-medium mb-1">Descripción</label><textarea id="item-description" rows="3"></textarea></div>
+                        <div><label for="item-tags" class="block text-sm font-medium mb-1">Etiquetas (separadas por ;)</label><input type="text" id="item-tags" placeholder="Nuevo;Limitado;Exclusivo"></div>
+                        <div><label for="item-image" class="block text-sm font-medium mb-1">Imagen del Artículo</label><input type="file" id="item-image" accept="image/*"></div>
+                        <div class="flex justify-end gap-4 pt-4"><button type="button" id="cancel-shop-edit-btn" class="btn-secondary hidden">Cancelar</button><button type="submit" id="submit-shop-item-btn" class="btn-primary">Crear Artículo</button></div>
+                    </form>
+                </div>
+                <div class="mt-12">
+                    <h3 class="text-xl font-bold mb-6">Artículos en la Tienda</h3>
+                    <div class="content-card rounded-xl shadow-lg overflow-hidden">
+                        <table class="w-full">
+                            <thead class="bg-gray-50"><tr><th class="p-4 text-left">Artículo</th><th class="p-4 text-left">Categoría</th><th class="p-4 text-center">Precio (S/)</th><th class="p-4 text-center">Precio (Puntos)</th><th class="p-4 text-right">Acciones</th></tr></thead>
+                            <tbody id="shop-items-list"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="users-section" class="admin-section hidden">
+                 <h2 class="text-3xl font-bold mb-6">Gestionar Usuarios</h2>
+                 <div class="content-card rounded-xl shadow-lg overflow-hidden">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="p-4 text-left">Email</th><th class="p-4 text-left">Nombre de Usuario</th><th class="p-4 text-center">Rol</th><th class="p-4 text-center">Saldo (S/)</th><th class="p-4 text-center">Puntos Gravity</th><th class="p-4 text-right">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-list"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="codes-section" class="admin-section hidden">
+                <h2 class="text-3xl font-bold mb-6">Gestionar Códigos de Canje</h2>
+                <div class="content-card p-8 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-bold text-indigo-600 mb-6">Crear Nuevo Código</h3>
+                    <form id="create-code-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="code-id" class="block text-sm font-medium mb-2">Código Generado</label>
+                                <div class="flex gap-2">
+                                    <input type="text" id="code-id" placeholder="Presiona 'Generar'" readonly required>
+                                    <button type="button" id="generate-code-btn" class="btn-secondary whitespace-nowrap">Generar</button>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="code-reward-type" class="block text-sm font-medium mb-2">Tipo de Premio</label>
+                                <select id="code-reward-type">
+                                    <option value="points">Puntos Gravity</option><option value="major_prize">Premio Mayor</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="points-reward-group">
+                            <label for="code-points" class="block text-sm font-medium mb-2">Puntos a Otorgar</label>
+                            <input type="number" id="code-points" value="100" required>
+                        </div>
+                        <div id="major-prize-reward-group" class="hidden">
+                            <label for="major-prize-description" class="block text-sm font-medium mb-2">Descripción del Premio Mayor</label>
+                            <input type="text" id="major-prize-description" placeholder="Ej: Skin Épica a elección">
+                        </div>
+                        <div>
+                            <label for="code-uses" class="block text-sm font-medium mb-2">Número de Usos</label>
+                            <input type="number" id="code-uses" value="1" required>
+                        </div>
+                        <div class="flex justify-end pt-4">
+                            <button type="submit" class="btn-primary">Crear Código</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="mt-12">
+                    <h3 class="text-xl font-bold mb-6">Códigos Existentes</h3>
+                    <div class="content-card rounded-xl shadow-lg overflow-hidden">
+                        <table class="w-full">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="p-4 text-left">Código</th><th class="p-4 text-center">Tipo de Premio</th><th class="p-4 text-center">Valor</th><th class="p-4 text-center">Usos restantes</th><th class="p-4 text-right">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="codes-list"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="purchases-section" class="admin-section hidden">
+                <h2 class="text-3xl font-bold mb-6">Historial de Compras de la Tienda</h2>
+                <div class="content-card rounded-xl shadow-lg overflow-hidden">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="p-4 text-left">Usuario</th><th class="p-4 text-left">Artículo Comprado</th><th class="p-4 text-center">Método de Pago</th><th class="p-4 text-center">Costo</th><th class="p-4 text-left">Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody id="purchases-list"></tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <section id="claims-section" class="admin-section hidden">
+                <h2 class="text-3xl font-bold mb-6">Gestionar Reclamos de Premios Mayores</h2>
+                <div class="content-card rounded-xl shadow-lg overflow-hidden">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="p-4 text-left">Código de Reclamo</th><th class="p-4 text-left">Usuario</th><th class="p-4 text-left">Premio</th><th class="p-4 text-left">Fecha de Canje</th><th class="p-4 text-center">Estado</th><th class="p-4 text-right">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="claims-list"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="edit-user-modal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
+        <div class="content-card p-8 rounded-xl shadow-lg w-full max-w-md space-y-4">
+            <h3 class="text-xl font-bold text-indigo-600 mb-6">Editar Usuario</h3>
+            <form id="edit-user-form">
+                <input type="hidden" id="edit-user-id">
+                <p class="mb-4">Usuario: <strong id="edit-user-username"></strong></p>
+                <div>
+                    <label for="edit-user-balance" class="block text-sm font-medium mb-1">Saldo (S/)</label>
+                    <input type="number" step="0.01" id="edit-user-balance" required>
+                </div>
+                <div>
+                    <label for="edit-user-points" class="block text-sm font-medium mb-1">Puntos Gravity</label>
+                    <input type="number" id="edit-user-points" required>
+                </div>
+                <div class="flex justify-end gap-4 mt-6">
+                    <button type="button" id="cancel-user-edit-btn" class="btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="loader" class="fixed inset-0 bg-white flex flex-col items-center justify-center text-center">
+        <i data-lucide="loader-2" class="w-12 h-12 text-indigo-600 animate-spin"></i>
+        <p class="mt-4 text-lg text-gray-700">Verificando acceso...</p>
+    </div>
+
+    <template id="team-control-card-template">
+        <div class="team-control-card">
+            <div class="flex items-center gap-4 mb-4">
+                <img class="team-card-logo w-14 h-14 rounded-full object-cover bg-gray-100" src="https://placehold.co/56x56/E5E7EB/4B5563?text=L" alt="Logo del Equipo">
+                <div>
+                    <h5 class="team-card-name font-bold text-gray-800 text-lg">Cargando...</h5>
+                    <p class="team-card-id text-xs text-gray-400 font-mono">ID: cargando...</p>
+                </div>
+            </div>
+            <div class="flex-1 space-y-4">
+                <div>
+                    <h6 class="text-sm font-semibold text-indigo-600 mb-2">Miembros Inscritos</h6>
+                    <ul class="team-card-members-list text-sm text-gray-600 space-y-1">
+                        <li>Cargando...</li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="text-sm font-semibold text-indigo-600 mb-2">Detalles de Inscripción</h6>
+                    <div class="text-sm space-y-1 text-gray-500">
+                        <p><strong>Fecha:</strong> <span class="team-card-date">...</span></p>
+                        <p><strong>Método:</strong> <span class="team-card-method">...</span></p>
+                        <div class="team-card-tx-details hidden">
+                           <p><strong>Comprobante:</strong> <span class="team-card-tx-code font-mono text-xs p-1 bg-gray-100 rounded">...</span></p>
+                           <p><strong>Pagador:</strong> <span class="team-card-tx-payer">...</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-gray-200">
+                <label class="block text-sm font-medium mb-2 text-gray-700">Asignar Posición Final</label>
+                <select class="team-rank-selector w-full">
+                    <option value="participante">Participante</option>
+                    <option value="top8">Top 8</option>
+                    <option value="top4">Top 4</option>
+                    <option value="3er Puesto">3er Puesto</option>
+                    <option value="2do Puesto">2do Puesto</option>
+                    <option value="1er Puesto">1er Puesto</option>
+                </select>
+            </div>
+        </div>
+    </template>
+
+    <script type="module" src="admin-app.js"></script>
+</body>
+</html>

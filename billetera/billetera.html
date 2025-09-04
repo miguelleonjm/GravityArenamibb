@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billetera - Gravity Tournaments</title>
+    <link rel="stylesheet" href="../home/home.css">
+    <link rel="stylesheet" href="billetera.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+      <nav class="main-nav">
+        <div class="logo-container">
+          <a href="../home/home.html"><img src="../home/imagen/logo 1adm blanco y negro.png" alt="Logo Gravity" class="logo-img" onerror="this.onerror=null;this.src='https://placehold.co/150x50/2c2141/ffffff?text=Gravity';"></a>
+        </div>
+        <div class="nav-center">
+          <ul class="nav-links">
+            <li><a href="../home/home.html" class="nav-link">Inicio</a></li>
+            <li><a href="../torneos/torneos.html" class="nav-link">Torneos</a></li>
+            <li><a href="../tienda/tienda.html" class="nav-link">Tienda</a></li>
+            <li><a href="../billetera/billetera.html" class="nav-link active">Billetera</a></li>
+            <li><a href="../mi-equipo/mi-equipo.html" class="nav-link">Mi Equipo</a></li>
+          </ul>
+        </div>
+        <div class="profile-section">
+          <div class="profile-icon-container" id="profile-icon">
+            <img id="header-pfp" alt="Foto de perfil" class="header-profile-pic hidden">
+            <i id="header-default-icon" class="fas fa-user-circle profile-icon"></i>
+          </div>
+          <div class="profile-dropdown" id="profile-dropdown">
+            <div class="profile-info">
+              <img id="dropdown-pfp" alt="Foto de perfil" class="dropdown-profile-pic">
+              <div class="user-details">
+                <span id="username-display" class="username">Cargando...</span>
+                <span id="email-display" class="email"></span>
+              </div>
+            </div>
+            <ul class="dropdown-menu">
+              <li><a href="../perfil/perfil.html"><i class="fas fa-user"></i> Ver Perfil</a></li>
+              <li><a href="#"><i class="fas fa-trophy"></i> Historial de Torneos</a></li>
+              <li><a href="#"><i class="fas fa-shopping-cart"></i> Historial de Compras</a></li>
+              <li id="logout-btn"><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="main-content">
+        <section class="wallet-section">
+            <div class="wallet-card-container">
+                <div class="vip-wallet-card">
+                    <div class="card-gloss-effect"></div>
+                    <div class="card-header">
+                        <img src="imagenes/chip png.png" alt="Chip" class="card-chip">
+                        <span class="card-logo">Gravity</span>
+                    </div>
+                    <div class="card-balance-group">
+                        <div class="balance-item">
+                            <span class="balance-label">Saldo Disponible</span>
+                            <span id="account-balance-display" class="balance-amount">S/ 0.00</span>
+                        </div>
+                        <div class="balance-item">
+                            <span class="balance-label">Puntos Gravity</span>
+                            <span id="gravity-points-display" class="balance-amount points">★ 0</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span id="card-username-display" class="card-username">Cargando...</span>
+                        <img src="imagenes/visa png.png" alt="Visa/Mastercard" class="card-brand-logo">
+                    </div>
+                </div>
+                <div class="wallet-actions">
+                    <button id="deposit-btn" class="wallet-btn deposit"><i class="fas fa-plus-circle"></i> Depositar Saldo</button>
+                    <button id="withdraw-btn" class="wallet-btn withdraw"><i class="fas fa-arrow-circle-down"></i> Retirar Saldo</button>
+                </div>
+            </div>
+
+            <div class="transactions-container">
+                <div class="transactions-header">
+                    <h3>Historial de Movimientos</h3>
+                    <div class="transaction-filters">
+                        <button class="filter-btn active" data-filter="all">Todos</button>
+                        <button class="filter-btn" data-filter="income">Ingresos</button>
+                        <button class="filter-btn" data-filter="expenses">Gastos</button>
+                    </div>
+                </div>
+                <div class="transactions-list" id="transactions-list">
+                    </div>
+            </div>
+        </section>
+    </main>
+    
+    <div id="deposit-modal" class="modal-backdrop hidden">
+        <div class="wallet-modal-content">
+            <button class="close-modal-btn" data-modal-id="deposit-modal">&times;</button>
+            <div id="payment-method-view" class="deposit-view">
+                <h3>Selecciona un Método de Recarga</h3>
+                <div class="payment-method-grid">
+                    <div class="payment-method-option" data-method="transfer">
+                        <img src="imagenes/visa png.png" alt="Transferencia Bancaria">
+                        <span>Transferencia Bancaria / Agentes</span>
+                    </div>
+                    <div class="payment-method-option" data-method="yape">
+                        <img src="imagenes/yape.png" alt="Yape Plin">
+                        <span>Yape / Plin con QR</span>
+                    </div>
+                </div>
+            </div>
+            <div id="transfer-payment-view" class="deposit-view hidden">
+                <button class="back-to-selection-btn"><i class="fas fa-arrow-left"></i> Volver</button>
+                <h3>Recarga por Transferencia</h3>
+                 <div class="instructions">
+                    <p>Realiza la transferencia a nuestra cuenta y luego registra los datos de la operación aquí.</p>
+                    <div class="account-details">
+                        <p><strong>BCP Ahorros Soles:</strong> 191-12345678-0-99</p>
+                        <p><strong>Titular:</strong> Gravity Tournaments SAC</p>
+                    </div>
+                </div>
+                <form id="transfer-deposit-form">
+                    <div class="form-group">
+                        <label for="transfer-amount">Monto Depositado (S/)</label>
+                        <input type="number" id="transfer-amount" step="0.01" placeholder="Ej: 50.00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="transfer-code">ID de Transacción / Nro. de Operación</label>
+                        <input type="text" id="transfer-code" placeholder="Ingresa el código de tu voucher" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="transfer-holder">Nombre del Titular de la Cuenta Origen</label>
+                        <input type="text" id="transfer-holder" placeholder="El nombre que aparece en tu cuenta" required>
+                    </div>
+                    <button type="submit" class="wallet-btn deposit full-width">Registrar Depósito</button>
+                </form>
+            </div>
+            <div id="yape-payment-view" class="deposit-view hidden">
+                <button class="back-to-selection-btn"><i class="fas fa-arrow-left"></i> Volver</button>
+                <h3>Recarga con Yape / Plin</h3>
+                <div class="instructions yape-instructions">
+                    <div class="qr-code-container">
+                        <img src="imagenes/pagos.png" alt="QR Yape Plin" class="qr-code">
+                        <p>Escanea para pagar</p>
+                    </div>
+                    <div class="account-details">
+                        <p><strong>YAPE/PLIN:</strong> 987 654 321</p>
+                        <p><strong>Titular:</strong> Gravity Tournaments SAC</p>
+                    </div>
+                </div>
+                <form id="yape-deposit-form">
+                    <div class="form-group">
+                        <label for="yape-amount">Monto Depositado (S/)</label>
+                        <input type="number" id="yape-amount" step="0.01" placeholder="Ej: 20.00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="yape-code">Código de Operación</label>
+                        <input type="text" id="yape-code" placeholder="Ingresa el nro. de tu operación" required>
+                    </div>
+                    <button type="submit" class="wallet-btn deposit full-width">Registrar Depósito</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="withdraw-modal" class="modal-backdrop hidden">
+        <div class="wallet-modal-content">
+            <button class="close-modal-btn" data-modal-id="withdraw-modal">&times;</button>
+            <h3>Retirar Saldo</h3>
+            <div class="instructions">
+                <p>Ingresa el monto que deseas retirar y tus datos para la transferencia. Los retiros se procesan en un plazo de 24 horas.</p>
+            </div>
+            <form id="withdraw-form">
+                <div class="form-group">
+                    <label for="withdraw-amount">Monto a Retirar (S/)</label>
+                    <input type="number" id="withdraw-amount" step="0.01" placeholder="Monto" required>
+                </div>
+                <div class="form-group">
+                    <label for="withdraw-details">Datos de la cuenta (YAPE, PLIN, Nro. Cuenta)</label>
+                    <textarea id="withdraw-details" rows="3" placeholder="Ej: YAPE a nombre de Juan Pérez - 987654321" required></textarea>
+                </div>
+                <button type="submit" class="wallet-btn withdraw full-width">Enviar Solicitud de Retiro</button>
+            </form>
+        </div>
+    </div>
+    <div id="message-modal" class="modal-backdrop hidden">
+        <div class="message-modal-content">
+            <h3 id="message-title"></h3>
+            <p id="message-text"></p>
+            <div class="message-actions">
+                <button id="message-ok-btn" class="wallet-btn deposit">OK</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="main-footer">
+        <div class="footer-container">
+          <div class="footer-column footer-about">
+              <img src="../home/imagen/logo 1adm blanco y negro.png" alt="Logo Gravity" class="footer-logo" onerror="this.onerror=null;this.src='https://placehold.co/150x50/1A1A1A/ffffff?text=Gravity';">
+              <div class="social-icons">
+                  <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                  <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                  <a href="#" aria-label="Twitch"><i class="fab fa-twitch"></i></a>
+                  <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+              </div>
+          </div>
+          <div class="footer-column footer-links">
+              <h4>Políticas</h4>
+              <ul>
+                  <li><a href="../policies/terminos.html">Términos y condiciones</a></li>
+                  <li><a href="../policies/privacidad.html">Política de privacidad</a></li>
+                  <li><a href="../policies/faq.html">Preguntas frecuentes</a></li>
+                  <li><a href="../policies/cookies.html">Política de cookies</a></li>
+              </ul>
+          </div>
+          <div class="footer-column footer-links">
+              <h4>Nosotros</h4>
+              <ul>
+                  <li><a href="../policies/nosotros.html">¿Quiénes somos?</a></li>
+                  <li><a href="../policies/contacto.html">Contacto</a></li>
+                  <li><a href="../policies/soporte.html">Soporte</a></li>
+              </ul>
+          </div>
+          <div class="footer-column footer-sponsors">
+              <h4>Patrocinadores</h4>
+              <div class="sponsors-container">
+                  <img src="../home/imagen/logo gravity.png" alt="Sponsor 1">
+                  <img src="../home/imagen/logo final gravity.png" alt="Sponsor 2">
+                  <img src="https://placehold.co/100x50/1A1A1A/A8A8A8?text=Sponsor+3" alt="Sponsor 3">
+                  <img src="https://placehold.co/100x50/1A1A1A/A8A8A8?text=Sponsor+4" alt="Sponsor 4">
+              </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Gravity Tournaments. Todos los derechos reservados. Creado por @MiguelGL.</p>
+        </div>
+    </footer>
+    <script type="module" src="billetera.js"></script>
+</body>
+</html>
