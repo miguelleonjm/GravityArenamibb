@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda - Gravity Tournaments</title>
+    <title>Mobile Legends - Tienda Gravity</title>
     <link rel="stylesheet" href="../home/home.css">
     <link rel="stylesheet" href="tienda.css">
+    <link rel="stylesheet" href="product-page.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
 </head>
 <body>
 
     <header class="main-header">
       <nav class="main-nav">
         <div class="logo-container">
-          <a href="../home/home.html"><img src="../home/imagen/logo 1adm blanco y negro.png" alt="Logo Gravity" class="logo-img" onerror="this.onerror=null;this.src='https://placehold.co/150x50/2c2141/ffffff?text=Gravity';"></a>
+          <a href="../home/home.html"><img src="../home/imagen/logo 1adm blanco y negro.png" alt="Logo Gravity" class="logo-img"></a>
         </div>
         <div class="nav-center">
           <ul class="nav-links">
@@ -50,51 +50,60 @@
     </header>
 
     <main class="main-content">
-        <div class="page-header">
-            <h1 class="page-title">Tienda Gravity</h1>
-            <p class="page-subtitle">Usa tus puntos para canjear recompensas exclusivas.</p>
+        <div class="product-header">
+            <a href="tienda.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a la Tienda</a>
         </div>
 
-        <section class="store-section">
-            <h2 class="section-title">Populares</h2>
-            <div class="items-grid popular-items-grid">
-                <a class="item-card" href="mobile-legends.html">
-                    <img src="Imagenes/portadaMLBB.jpg" alt="Mobile Legends: Bang Bang" class="item-image">
-                    <div class="item-info">
-                        <h3 class="item-name">Mobile Legends</h3>
-                    </div>
-                </a>
-                <a class="item-card" href="#">
-                    <img src="./imagenes/valorant.jpg" alt="Valorant" class="item-image">
-                    <div class="item-info">
-                        <h3 class="item-name">Valorant</h3>
-                    </div>
-                </a>
+        <section class="product-details-section">
+            <div class="product-banner" style="background-image: url('Imagenes/banerMLBB.jpg');">
+                <div class="product-info-box">
+                    <img src="Imagenes/portadaMLBB.jpg" alt="Mobile Legends Logo" class="product-logo">
+                    <h1 class="product-title">Mobile Legends</h1>
+                </div>
+            </div>
+            
+            <div class="product-content-wrapper">
+                <div class="id-input-card">
+                    <h2>Ingresa tu ID de Jugador</h2>
+                    <p>Ingresa tu ID y Zona de Servidor (números) para que tu compra sea procesada correctamente.</p>
+                    <form id="player-id-form">
+                        <div class="input-group">
+                            <label for="player-id">ID de Jugador</label>
+                            <input type="text" id="player-id" placeholder="Ej. 12345678" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="server-id">Zona de Servidor</label>
+                            <input type="text" id="server-id" placeholder="Ej. 1234" required>
+                        </div>
+                        <button type="submit" class="verify-btn">Verificar ID</button>
+                    </form>
                 </div>
 
-            <h2 class="section-title">Consolas / Plataformas</h2>
-            <div class="items-grid platforms-grid">
-                <a class="item-card" href="#">
-                    <img src="./imagenes/playstation-store.jpg" alt="PlayStation Store" class="item-image">
-                    <div class="item-info">
-                        <h3 class="item-name">PlayStation Store</h3>
-                    </div>
-                </a>
-                <a class="item-card" href="#">
-                    <img src="./imagenes/apple-gift-card.jpg" alt="Apple Gift Card" class="item-image">
-                    <div class="item-info">
-                        <h3 class="item-name">Apple Gift Card</h3>
-                    </div>
-                </a>
+                <div class="price-options-section">
+                    <h2>Selecciona una Recarga</h2>
+                    <div class="options-grid">
+                        <div class="price-option-card" data-points="10000" data-price="2.50">
+                            <img src="Imagenes/170 diamantes mlbb.jpg" alt="170 Diamantes">
+                            <span class="diamonds-amount">170 Diamantes</span>
+                            <span class="price-info">S/ 12.50</span>
+                            <span class="points-info"><i class="fas fa-star"></i> 10000 Puntos</span>
+                        </div>
+                        <div class="price-option-card" data-points="20000" data-price="5.00">
+                            <img src="Imagenes/278 diamantes mlbb.jpg" alt="278 Diamantes">
+                            <span class="diamonds-amount">278 Diamantes</span>
+                            <span class="price-info">S/ 18.00</span>
+                            <span class="points-info"><i class="fas fa-star"></i> 20000 Puntos</span>
+                        </div>
+                        </div>
                 </div>
-
+            </div>
         </section>
     </main>
-    
+
     <footer class="main-footer">
         <div class="footer-container">
           <div class="footer-column footer-about">
-              <img src="../home/imagen/logo 1adm blanco y negro.png" alt="Logo Gravity" class="footer-logo" onerror="this.onerror=null;this.src='https://placehold.co/150x50/1A1A1A/ffffff?text=Gravity';">
+              <img src="../home/imagen/logo 1adm blanco y negro.png" alt="Logo Gravity" class="footer-logo">
               <div class="social-icons">
                   <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                   <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -135,6 +144,5 @@
         </div>
     </footer>
 
-    <script type="module" src="tienda-app.js"></script>
 </body>
 </html>
