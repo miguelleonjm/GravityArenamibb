@@ -56,70 +56,40 @@
         </div>
 
         <section class="store-section">
-            <div class="filters-bar" id="category-filters">
-                <button class="filter-btn active" data-category="Todos">Todos</button>
-            </div>
-            <div id="shop-items-grid" class="items-grid"></div>
+            <h2 class="section-title">Populares</h2>
+            <div class="items-grid popular-items-grid">
+                <div class="item-card" data-product="mobile-legends">
+                    <img src="./imagenes/mobile-legends.jpg" alt="Mobile Legends: Bang Bang" class="item-image">
+                    <div class="item-info">
+                        <h3 class="item-name">Mobile Legends</h3>
+                    </div>
+                </div>
+                <div class="item-card" data-product="valorant">
+                    <img src="./imagenes/valorant.jpg" alt="Valorant" class="item-image">
+                    <div class="item-info">
+                        <h3 class="item-name">Valorant</h3>
+                    </div>
+                </div>
+                </div>
+
+            <h2 class="section-title">Consolas / Plataformas</h2>
+            <div class="items-grid platforms-grid">
+                <div class="item-card" data-product="playstation">
+                    <img src="./imagenes/playstation-store.jpg" alt="PlayStation Store" class="item-image">
+                    <div class="item-info">
+                        <h3 class="item-name">PlayStation Store</h3>
+                    </div>
+                </div>
+                <div class="item-card" data-product="apple">
+                    <img src="./imagenes/apple-gift-card.jpg" alt="Apple Gift Card" class="item-image">
+                    <div class="item-info">
+                        <h3 class="item-name">Apple Gift Card</h3>
+                    </div>
+                </div>
+                </div>
+
         </section>
     </main>
-    
-    <div id="purchase-modal" class="modal-backdrop hidden">
-        <div class="purchase-modal-content">
-            <button id="close-purchase-modal-btn" class="close-modal-btn">&times;</button>
-            <div id="purchase-item-image" class="purchase-item-image"></div>
-            <div class="purchase-item-details">
-                <h2 id="purchase-item-name">Nombre del Artículo</h2>
-                <p id="purchase-item-description">Descripción detallada.</p>
-                <div class="purchase-actions">
-                    <div id="purchase-with-points-option" class="purchase-option">
-                        <div class="price-tag points"><i class="fas fa-star"></i> <span id="purchase-price-points"></span></div>
-                        <button id="buy-with-points-btn" class="btn-purchase points">Comprar con Puntos</button>
-                        <span class="user-balance-info">Tu saldo: <strong id="user-points-balance">0</strong> Puntos</span>
-                    </div>
-                    <div id="purchase-with-money-option" class="purchase-option">
-                        <div class="price-tag money"><i class="fas fa-dollar-sign"></i> S/ <span id="purchase-price-real"></span></div>
-                        <button id="buy-with-money-btn" class="btn-purchase money">Comprar con Saldo</button>
-                        <span class="user-balance-info">Tu saldo: S/ <strong id="user-money-balance">0.00</strong></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="major-prize-celebration-modal" class="celebration-backdrop hidden">
-        <div class="confetti-container"></div>
-        <div id="money-container" class="confetti-container"></div>
-        <div class="celebration-content">
-            <div class="animated-texts-container"></div>
-            <div class="prize-reveal-box hidden">
-                <div class="prize-modal-icon"><i class="fas fa-gift"></i></div>
-                <h2 class="prize-modal-title">¡Ganaste un Premio Mayor!</h2>
-                <p class="prize-modal-description">Has canjeado con éxito:</p>
-                <p id="prize-name-display" class="prize-name"></p>
-                <div class="claim-code-box">
-                    <span>Código de Reclamo Único:</span>
-                    <strong id="claim-code-display"></strong>
-                </div>
-                <div class="prize-instructions">
-                    <strong>¿Cómo reclamarlo?</strong>
-                    <p>Envía una captura de esta ventana a nuestro WhatsApp de soporte para coordinar la entrega.</p>
-                </div>
-                <div class="prize-modal-actions">
-                    <a id="whatsapp-support-link" href="#" target="_blank" class="btn-primary-prize">Contactar por WhatsApp</a>
-                    <button id="close-prize-modal-btn" class="btn-secondary-prize">Entendido</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="message-modal" class="modal-backdrop hidden">
-        <div class="message-modal-content">
-            <h3 id="message-title"></h3>
-            <p id="message-text"></p>
-            <div id="message-buttons" class="message-actions">
-                <button id="message-cancel-btn" class="btn-secondary">Cancelar</button>
-                <button id="message-ok-btn" class="btn-primary">OK</button>
-            </div>
-        </div>
-    </div>
     
     <footer class="main-footer">
         <div class="footer-container">

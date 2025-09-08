@@ -18,9 +18,7 @@
     padding: 0 2rem;
 }
 
-/* ===== INICIO: NUEVOS ESTILOS AÑADIDOS Y CORREGIDOS ===== */
-
-/* Estilos para el nuevo encabezado de la página */
+/* Encabezado de la página */
 .page-header {
     text-align: center;
     margin-bottom: 3rem;
@@ -40,207 +38,69 @@
     color: var(--text-secondary);
 }
 
-/* Nuevo Panel de Puntos y Código (reemplaza el diseño anterior) */
-.store-dashboard {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 2rem;
-    background-color: var(--background-container);
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 2rem;
-    margin-bottom: 3rem;
-}
-
-.points-balance-card, .redeem-code-card {
-    padding: 1.5rem;
-    border-radius: 16px;
-    background-color: #111;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.points-balance-card h3, .redeem-code-card h3 {
-    font-size: 1.2rem;
+/* Títulos de sección */
+.section-title {
+    font-size: 1.8rem;
     font-weight: 600;
-    color: var(--text-secondary);
-    margin-top: 0;
-    margin-bottom: 1rem;
-}
-
-.points-display {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.points-display i {
-    font-size: 2.5rem;
-    color: var(--accent-color);
-}
-
-.points-display span {
-    font-size: 3.5rem;
-    font-weight: 700;
     color: var(--text-primary);
-    line-height: 1;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
 }
 
-#redeem-code-form {
-    display: flex;
-    gap: 1rem;
+/* Cuadrícula de productos (grid) */
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
 }
 
-#redeem-code-form input {
-    flex-grow: 1;
-    background-color: #0D0D0D;
-    border: 1px solid #2d2d2d;
-    padding: 0.8rem 1rem;
-    border-radius: 12px;
-    color: var(--text-primary);
-    font-size: 1rem;
-    transition: border-color 0.2s ease;
+/* Estilo de las tarjetas de producto */
+.item-card {
+    background-color: var(--background-container);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    border: 1px solid transparent;
 }
-#redeem-code-form input:focus {
-    outline: none;
+
+.item-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(167, 0, 255, 0.2);
     border-color: var(--accent-color);
 }
 
-#redeem-code-form button {
-    background-color: var(--accent-color);
-    color: var(--background-main);
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: filter 0.2s;
-}
-
-#redeem-code-form button:hover {
-    filter: brightness(1.2);
-}
-
-#redeem-message {
-    font-weight: 500;
-    margin-top: 1rem;
-    min-height: 1.2em;
-    font-size: 0.9rem;
-}
-/* ===== FIN: NUEVOS ESTILOS AÑADIDOS Y CORREGIDOS ===== */
-
-
-/* Filtros */
-.filters-bar { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
-.filter-btn { background-color: var(--background-container); color: var(--text-secondary); border: 1px solid var(--border-color); padding: 0.6rem 1.2rem; border-radius: 99px; cursor: pointer; font-weight: 500; transition: all 0.2s ease; }
-.filter-btn:hover { background-color: #252525; color: var(--text-primary); }
-.filter-btn.active { background-color: var(--accent-color); color: var(--background-main); border-color: var(--accent-color); font-weight: 600; }
-
-/* Tarjetas de Artículo */
-.items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
-.item-card { background-color: var(--background-container); border-radius: 16px; border: 1px solid var(--border-color); overflow: hidden; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
-.item-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(167, 0, 255, 0.2); }
-.item-image { width: 100%; aspect-ratio: 1 / 1; background-size: cover; background-position: center; }
-.item-info { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
-.item-name { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; flex-grow: 1; }
-.item-prices { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
-.price-tag { font-size: 1rem; font-weight: 700; padding: 0.5rem 1rem; border-radius: 12px; display: flex; align-items: center; gap: 0.5rem; }
-.price-tag.points { background-color: rgba(168, 85, 247, 0.1); color: var(--accent-color); }
-.price-tag.money { background-color: rgba(46, 204, 113, 0.1); color: var(--success-color); }
-
-/* Modal de Compra */
-.hidden { display: none !important; }
-.modal-backdrop { position: fixed; inset: 0; background-color: rgba(13, 13, 13, 0.6); backdrop-filter: blur(10px); z-index: 2000; display: flex; align-items: center; justify-content: center; padding: 1rem; }
-.purchase-modal-content { display: flex; max-width: 800px; width: 100%; background: var(--background-container); border-radius: 20px; border: 1px solid var(--border-color); overflow: hidden; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
-.close-modal-btn { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: #a8a8a8; font-size: 2rem; cursor: pointer; line-height: 1; transition: color 0.2s ease; z-index: 10; }
-.close-modal-btn:hover { color: white; }
-.purchase-item-image { flex: 0 0 45%; background-size: cover; background-position: center; min-height: 450px; }
-.purchase-item-details { padding: 2.5rem; display: flex; flex-direction: column; }
-#purchase-item-name { font-size: 2.2rem; font-weight: 700; color: var(--text-primary); line-height: 1.2; margin-bottom: 1rem; }
-#purchase-item-description { color: var(--text-secondary); font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1; }
-.purchase-actions { display: flex; flex-direction: column; gap: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem; }
-.purchase-option { display: flex; flex-direction: column; gap: 0.75rem; }
-.btn-purchase { width: 100%; padding: 0.9rem; border-radius: 12px; border: none; cursor: pointer; font-weight: 700; font-size: 1.1rem; transition: filter 0.2s ease; }
-.btn-purchase.points { background-color: var(--accent-color); color: var(--background-main); }
-.btn-purchase.money { background-color: var(--success-color); color: var(--background-main); }
-.btn-purchase:disabled { background-color: #444; cursor: not-allowed; color: #888; }
-.btn-purchase:hover:not(:disabled) { filter: brightness(1.2); }
-.user-balance-info { font-size: 0.9rem; color: var(--text-secondary); text-align: center; }
-.user-balance-info strong { color: var(--text-primary); }
-
-/* ESTILOS PARA CELEBRACIÓN DE PREMIO MAYOR */
-.celebration-backdrop { position: fixed; inset: 0; background-color: rgba(13, 13, 13, 0.8); backdrop-filter: blur(15px); z-index: 3000; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.confetti-container { position: absolute; inset: 0; pointer-events: none; }
-.confetti { position: absolute; width: 10px; height: 10px; background-color: var(--accent-color); opacity: 0; }
-.confetti.triangle { width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 10px solid var(--success-color); background-color: transparent; }
-
-.money-bill { position: absolute; width: 30px; height: 15px; background-color: #2ECC71; border: 1px solid #27ae60; border-radius: 2px; opacity: 0; color: white; font-size: 10px; text-align: center; line-height: 15px; font-weight: bold; }
-.money-bill::before { content: '$'; }
-
-@keyframes fall { from { transform: translateY(-10vh) rotate(0deg); opacity: 1; } to { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
-
-.celebration-content { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-.animated-texts-container { position: relative; height: 100px; width: 80vw; max-width: 800px; }
-.animated-text { position: absolute; inset: 0; font-size: 2.5rem; font-weight: 700; color: white; opacity: 0; transform: translateY(20px); }
-.animated-text.show { animation: text-enter-exit 3s ease-in-out forwards; }
-@keyframes text-enter-exit { 0% { opacity: 0; transform: translateY(20px); } 15% { opacity: 1; transform: translateY(0); } 85% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-20px); } }
-
-.prize-reveal-box { background: linear-gradient(145deg, #2a2a2e, #1a1a1c); padding: 2.5rem; border-radius: 20px; border: 1px solid var(--border-color); width: 100%; max-width: 450px; text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.5); opacity: 0; transform: scale(0.9); animation: reveal-box-show 0.5s 0.2s ease-out forwards; }
-@keyframes reveal-box-show { to { opacity: 1; transform: scale(1); } }
-.prize-modal-icon { font-size: 3.5rem; color: var(--accent-color); margin-bottom: 1.5rem; }
-.prize-modal-title { font-size: 1.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
-.prize-modal-description { color: var(--text-secondary); margin-bottom: 1rem; }
-.prize-name { font-size: 1.2rem; font-weight: 600; color: var(--accent-color); background-color: rgba(167, 0, 255, 0.1); padding: 0.8rem; border-radius: 12px; margin-bottom: 1.5rem; }
-.claim-code-box { background-color: #111; border: 1px solid var(--accent-color); border-radius: 8px; padding: 0.75rem; margin: 1.5rem 0; text-align: center; }
-.claim-code-box span { display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.25rem; }
-.claim-code-box strong { font-size: 1.1rem; color: var(--success-color); letter-spacing: 1px; font-family: monospace; }
-.prize-instructions { background-color: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; margin-bottom: 2rem; font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
-.prize-instructions strong { color: var(--text-primary); display: block; margin-bottom: 0.5rem; }
-.prize-modal-actions { display: flex; flex-direction: column; gap: 1rem; }
-.btn-primary-prize, .btn-secondary-prize { padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: all 0.2s ease; }
-.btn-primary-prize { background-color: var(--success-color); color: #0D0D0D; }
-.btn-primary-prize:hover { filter: brightness(1.2); }
-.btn-secondary-prize { background-color: #333; color: white; }
-.btn-secondary-prize:hover { background-color: #444; }
-
-/* Estilos para el modal de mensajes/confirmación */
-.message-modal-content {
-    background: var(--background-container);
-    padding: 2rem;
-    border-radius: 16px;
-    border: 1px solid var(--border-color);
+.item-image {
     width: 100%;
-    max-width: 400px;
+    aspect-ratio: 1 / 1;
+    display: block;
+    object-fit: cover;
+}
+
+.item-info {
+    padding: 1rem;
     text-align: center;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-    z-index: 2100;
 }
-#message-title {
-    font-size: 1.5rem;
+
+.item-name {
+    font-size: 1rem;
     font-weight: 600;
+    margin: 0;
     color: var(--text-primary);
-    margin-bottom: 1rem;
 }
-#message-text {
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    line-height: 1.6;
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 0 1rem;
+    }
+    .page-title {
+        font-size: 2.5rem;
+    }
+    .items-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
 }
-.message-actions {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-.message-actions button {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    min-width: 100px;
-}
-.message-actions .btn-primary { background-color: var(--accent-color); color: var(--background-main); }
-.message-actions .btn-primary:hover { filter: brightness(1.2); }
-.message-actions .btn-secondary { background-color: #333; color: white; }
-.message-actions .btn-secondary:hover { background-color: #444; }
