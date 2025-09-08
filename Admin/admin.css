@@ -1,0 +1,241 @@
+/* ========================================================== */
+/* ===     DISEÑO "MODERNO Y ANALÍTICO" (LIGHT MODE)      === */
+/* ========================================================== */
+
+:root {
+    --bg-main: #F4F7FE;
+    --bg-sidebar: #4F46E5; /* Indigo-600 */
+    --bg-card: #FFFFFF;
+    --text-dark: #1F2937; /* gray-800 */
+    --text-secondary: #6B7280; /* gray-500 */
+    --text-sidebar: rgba(255, 255, 255, 0.8);
+    --text-sidebar-active: #FFFFFF;
+    --border-color: #E5E7EB; /* gray-200 */
+    --accent-color: #4F46E5;
+    --shadow-color: rgba(112, 128, 175, 0.08);
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-dark);
+}
+
+#admin-container {
+    height: 100vh;
+}
+
+main {
+    overflow-y: auto;
+}
+
+/* --- CORRECCIÓN PARA TÍTULOS PRINCIPALES --- */
+main h2, main h3, main h4, main h5, main h6 {
+    color: var(--text-dark);
+}
+
+
+/* --- BARRA LATERAL (ASIDE) --- */
+aside {
+    background-color: var(--bg-sidebar);
+    border-right: none;
+}
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    color: var(--text-sidebar);
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-sidebar-active);
+}
+.nav-link.active {
+    background-color: #6366F1; /* Indigo-500 */
+    color: var(--text-sidebar-active);
+    font-weight: 600;
+}
+.nav-link i {
+    width: 20px;
+    height: 20px;
+}
+#admin-logout-btn {
+    color: rgba(255, 255, 255, 0.7);
+}
+#admin-logout-btn:hover {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: #FFFFFF;
+}
+
+
+/* --- BUSCADOR --- */
+.search-box {
+    position: relative;
+}
+.search-box .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    width: 20px;
+    height: 20px;
+}
+.search-box input {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.6rem 1rem 0.6rem 3rem; /* Espacio para el icono */
+    transition: all 0.2s;
+}
+.search-box input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+/* --- DASHBOARD GRID Y WIDGETS --- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; /* 24px */
+}
+.widget-card {
+    background-color: var(--bg-card);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    border: 1px solid var(--border-color);
+}
+.chart-card-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+.widget-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.widget-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+.widget-select {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-main);
+}
+
+/* Tarjetas KPI */
+.kpi-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.kpi-icon-container {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.kpi-icon-container i {
+    width: 24px;
+    height: 24px;
+}
+.kpi-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+.kpi-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+/* --- ESTILOS GENERALES (ADAPTADOS AL TEMA CLARO) --- */
+.content-card {
+    background-color: var(--bg-card);
+    color: var(--text-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+.content-card p, .content-card label, .content-card td, .content-card span {
+    color: var(--text-secondary);
+}
+.content-card strong { color: var(--text-dark); }
+.content-card thead { background-color: #F9FAFB !important; }
+.content-card tbody tr { border-bottom: 1px solid var(--border-color); }
+input, textarea, select {
+    background-color: #F9FAFB;
+    border: 1px solid #D1D5DB;
+    color: var(--text-dark);
+    border-radius: 8px;
+}
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+.btn-primary {
+    background-color: var(--accent-color);
+    color: #FFFFFF;
+    box-shadow: 0 2px 5px rgba(79, 70, 229, 0.2);
+}
+.btn-primary:hover {
+    background-color: #4338CA; /* Indigo-700 */
+}
+.btn-secondary {
+    background-color: #E5E7EB; /* gray-200 */
+    color: var(--text-dark);
+}
+.btn-secondary:hover {
+    background-color: #D1D5DB;
+}
+.team-control-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-dark);
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px var(--shadow-color);
+}
+.team-control-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-color);
+    box-shadow: 0 4px 12px rgba(112, 128, 175, 0.15);
+}
+.team-control-card h6 { color: var(--accent-color); }
+.team-control-card select { width: 100%; }
+.team-card-members-list li { border-bottom-color: var(--border-color); }
+
+/* Badges */
+.role-badge, .status-badge, .payment-badge, .claim-status-badge, .method-badge {
+    padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; text-transform: capitalize; display: inline-block;
+}
+.role-badge.admin { background-color: rgba(245, 158, 11, 0.1); color: #B45309; }
+.role-badge.user { background-color: rgba(107, 114, 128, 0.1); color: #4B5563; }
+.status-badge.pendiente { background-color: rgba(245, 158, 11, 0.1); color: #B45309; }
+.status-badge.aprobado { background-color: rgba(16, 185, 129, 0.1); color: #047857; }
+.status-badge.rechazado { background-color: rgba(239, 68, 68, 0.1); color: #B91C1C; }
+.payment-badge.points { background-color: rgba(139, 92, 246, 0.1); color: #6D28D9; }
+.payment-badge.money { background-color: rgba(16, 185, 129, 0.1); color: #047857; }
+.claim-status-badge.unclaimed { background-color: rgba(245, 158, 11, 0.1); color: #B45309; }
+.claim-status-badge.claimed { background-color: rgba(16, 185, 129, 0.1); color: #047857; }
+.method-badge.manual { background-color: rgba(245, 158, 11, 0.1); color: #B45309; }
+.method-badge.billetera { background-color: rgba(16, 185, 129, 0.1); color: #047857; }
+.method-badge.gratuita { background-color: rgba(59, 130, 246, 0.1); color: #1D4ED8; }

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+  <div class="main-content-wrapper">
+    <div class="form-container">
+      <h2 class="form-title">Crear Cuenta</h2>
+
+      <form id="registerForm" novalidate>
+        <div style="margin-bottom: 1.5rem;">
+          <input type="text" id="username" name="username" class="input-field" placeholder="Nombre de usuario" required />
+          <div class="validation-message"></div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <input type="email" id="email" name="email" class="input-field" placeholder="Correo electrónico" required />
+          <div class="validation-message"></div>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <input type="password" id="password" name="password" class="input-field" placeholder="Contraseña" required />
+          <div class="validation-message"></div>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <input type="password" id="confirmPassword" name="confirmPassword" class="input-field" placeholder="Confirmar contraseña" required />
+          <div class="validation-message"></div>
+        </div>
+
+        <button type="submit" class="btn-primary">Registrarse</button>
+      </form>
+
+      <div class="social-divider">
+        <span class="line"></span>
+        <span class="text">o</span>
+        <span class="line"></span>
+      </div>
+
+      <div class="social-login-options">
+        <button class="btn-social facebook">
+          <i class="fab fa-facebook-f"></i>
+          <span>Regístrate con Facebook</span>
+        </button>
+        <button class="btn-social google">
+          <i class="fab fa-google"></i>
+          <span>Regístrate con Google</span>
+        </button>
+      </div>
+
+      <p class="form-footer-text">
+        ¿Ya tienes una cuenta? <a href="index.html" class="link-text" style="font-weight: 600;">Inicia Sesión</a>
+      </p>
+    </div>
+  </div>
+
+  <footer class="main-footer">
+    <p>&copy; 2025 Creado por @MiguelGL</p>
+  </footer>
+
+  <div id="alert-modal-container" class="alert-modal-hidden">
+    <div id="alert-modal-backdrop"></div>
+    <div id="alert-modal-content">
+      <div id="alert-modal-icon-container"></div>
+      <h3 id="alert-modal-title"></h3>
+      <p id="alert-modal-message"></p>
+      <button id="alert-modal-close-btn">Entendido</button>
+    </div>
+  </div>
+
+  <script type="module" src="firebase_auth_app_google.js"></script>
+</body>
+</html>

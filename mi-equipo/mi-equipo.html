@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Equipo - Gravity Tournaments</title>
+    <link rel="stylesheet" href="../home/home.css">
+    <link rel="stylesheet" href="mi-equipo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+      <nav class="main-nav">
+        <div class="logo-container">
+          <a href="../home/home.html"><img src="../home/imagen/logo 1adm blanco y negro.png" alt="Logo Gravity" class="logo-img"></a>
+        </div>
+        <div class="nav-center">
+          <ul class="nav-links">
+            <li><a href="../home/home.html" class="nav-link">Inicio</a></li>
+            <li><a href="../torneos/torneos.html" class="nav-link">Torneos</a></li>
+            <li><a href="../tienda/tienda.html" class="nav-link">Tienda</a></li>
+            <li><a href="../billetera/billetera.html" class="nav-link">Billetera</a></li>
+            <li><a href="../mi-equipo/mi-equipo.html" class="nav-link active">Mi Equipo</a></li>
+          </ul>
+        </div>
+        <div class="profile-section">
+          <div class="profile-icon-container" id="profile-icon">
+            <img id="header-pfp" alt="Foto de perfil" class="header-profile-pic hidden">
+            <i id="header-default-icon" class="fas fa-user-circle profile-icon"></i>
+          </div>
+          <div class="profile-dropdown" id="profile-dropdown">
+            <div class="profile-info">
+              <img id="dropdown-pfp-new" alt="Foto de perfil" class="dropdown-profile-pic">
+              <div class="user-details">
+                <span id="fullname-display" class="username">Cargando...</span>
+                <span id="email-display" class="email"></span>
+              </div>
+            </div>
+            <ul class="dropdown-menu">
+              <li><a href="../perfil/perfil.html"><i class="fas fa-user"></i> Ver Perfil</a></li>
+              <li><a href="#"><i class="fas fa-trophy"></i> Historial de Torneos</a></li>
+              <li><a href="#"><i class="fas fa-shopping-cart"></i> Historial de Compras</a></li>
+              <li id="logout-btn"><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="main-content">
+        <div id="no-team-view" class="view-container hidden">
+            <div class="no-team-grid">
+                <div class="action-card create-card">
+                    <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h2>Crear un Nuevo Equipo</h2>
+                    <p>Conviértete en el líder de tu propio escuadrón y forja tu leyenda.</p>
+                    <form id="create-team-form">
+                        <input type="text" id="new-team-name" placeholder="Nombre de tu equipo" required>
+                        <button type="submit">Fundar Equipo</button>
+                    </form>
+                </div>
+                <div class="action-card join-card">
+                    <div class="card-icon"><i class="fas fa-sign-in-alt"></i></div>
+                    <h2>Unirme a un Equipo</h2>
+                    <p>Ingresa el código de invitación para unirte a un equipo existente.</p>
+                    <form id="join-team-form">
+                        <input type="text" id="invitation-code" placeholder="Código de Invitación" required>
+                        <button type="submit">Unirme</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="has-team-view" class="team-view-container hidden">
+            <div id="team-banner" class="team-banner-new"></div>
+            
+            <div class="team-view-grid">
+                <div class="team-profile-column">
+                    <div class="team-identity-card">
+                        <div class="team-logo-wrapper">
+                            <img id="team-logo" src="https://placehold.co/150x150/1A1A1A/A8A8A8?text=Logo" alt="Logo del Equipo">
+                        </div>
+                        <h1 id="team-name-display">Cargando Nombre...</h1>
+                        <p id="team-description">Cargando descripción...</p>
+                        <div id="team-actions" class="team-actions"></div>
+                    </div>
+                    
+                    <div id="leader-actions" class="leader-panel hidden">
+                         <h3><i class="fas fa-key"></i> Panel de Líder</h3>
+                         <p>Código de Invitación:</p>
+                         <div class="invitation-code-box">
+                            <strong id="team-code-display"></strong>
+                            <button id="copy-code-btn" title="Copiar código"><i class="far fa-copy"></i></button>
+                         </div>
+                    </div>
+
+                    <div class="team-members-card">
+                        <h3><i class="fas fa-users"></i> Miembros del Equipo</h3>
+                        <ul id="team-members-list"></ul>
+                    </div>
+                </div>
+
+                <div class="team-dynamic-column">
+                    <div class="tabs-nav">
+                        <button class="tab-btn active" data-tab="chat"><i class="fas fa-comments"></i> Chat</button>
+                        <button class="tab-btn" data-tab="tournaments"><i class="fas fa-trophy"></i> Torneos</button>
+                    </div>
+                    <div class="tabs-content">
+                        <div id="chat-tab" class="tab-pane active">
+                            <div id="chat-messages">
+                                <p class="chat-placeholder">Bienvenido al chat del equipo...</p>
+                            </div>
+                            <form id="chat-form">
+                                <input type="text" id="chat-message-input" placeholder="Escribe un mensaje..." autocomplete="off">
+                                <button type="submit" id="send-chat-btn"><i class="fas fa-paper-plane"></i></button>
+                            </form>
+                        </div>
+                        <div id="tournaments-tab" class="tab-pane">
+                            <div id="enrolled-tournaments-list">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div id="edit-team-modal" class="modal-backdrop hidden">
+        <div class="modal-content-new">
+            <button id="close-modal-btn" class="close-modal-btn">&times;</button>
+            <h2>Editar Perfil del Equipo</h2>
+            <form id="edit-team-form">
+                <div class="input-group">
+                    <label for="edit-team-name">Nombre del Equipo</label>
+                    <input type="text" id="edit-team-name" required>
+                </div>
+                <div class="input-group">
+                    <label for="edit-team-description">Descripción</label>
+                    <textarea id="edit-team-description" rows="3"></textarea>
+                </div>
+
+                <div class="image-upload-container">
+                    <div class="image-preview-wrapper">
+                        <label>Logo Actual</label>
+                        <div class="logo-preview-box">
+                            <img id="logo-preview" src="https://placehold.co/100x100/1A1A1A/A8A8A8?text=Logo">
+                        </div>
+                        <label for="edit-team-logo" class="file-input-label">
+                            <i class="fas fa-upload"></i> Cambiar Logo
+                        </label>
+                        <input type="file" id="edit-team-logo" accept="image/*" class="file-input-hidden">
+                    </div>
+                    <div class="image-preview-wrapper">
+                        <label>Banner Actual</label>
+                        <div class="banner-preview-box">
+                            <img id="banner-preview" src="https://placehold.co/250x100/1A1A1A/A8A8A8?text=Banner">
+                        </div>
+                        <label for="edit-team-banner" class="file-input-label">
+                            <i class="fas fa-upload"></i> Cambiar Banner
+                        </label>
+                        <input type="file" id="edit-team-banner" accept="image/*" class="file-input-hidden">
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancel-edit-btn" class="btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 Gravity Tournaments. Todos los derechos reservados. Creado por @MiguelGL.</p>
+        </div>
+    </footer>
+    <script type="module" src="mi-equipo-app.js"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda - Gravity Tournaments</title>
+    <link rel="stylesheet" href="../home/home.css">
+    <link rel="stylesheet" href="tienda.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+</head>
+<body>
+
+    <header class="main-header">
+      <nav class="main-nav">
+        <div class="logo-container">
+          <a href="../home/home.html"><img src="../home/imagen/logo 1adm blanco y negro.png" alt="Logo Gravity" class="logo-img" onerror="this.onerror=null;this.src='https://placehold.co/150x50/2c2141/ffffff?text=Gravity';"></a>
+        </div>
+        <div class="nav-center">
+          <ul class="nav-links">
+            <li><a href="../home/home.html" class="nav-link">Inicio</a></li>
+            <li><a href="../torneos/torneos.html" class="nav-link">Torneos</a></li>
+            <li><a href="../tienda/tienda.html" class="nav-link active">Tienda</a></li>
+            <li><a href="../billetera/billetera.html" class="nav-link">Billetera</a></li>
+            <li><a href="../mi-equipo/mi-equipo.html" class="nav-link">Mi Equipo</a></li>
+          </ul>
+        </div>
+        <div class="profile-section">
+          <div class="profile-icon-container" id="profile-icon">
+            <img id="header-pfp" alt="Foto de perfil" class="header-profile-pic hidden">
+            <i id="header-default-icon" class="fas fa-user-circle profile-icon"></i>
+          </div>
+          <div class="profile-dropdown" id="profile-dropdown">
+            <div class="profile-info">
+              <img id="dropdown-pfp" alt="Foto de perfil" class="dropdown-profile-pic">
+              <div class="user-details">
+                <span id="username-display" class="username">Cargando...</span>
+                <span id="email-display" class="email"></span>
+              </div>
+            </div>
+            <ul class="dropdown-menu">
+              <li><a href="../perfil/perfil.html"><i class="fas fa-user"></i> Ver Perfil</a></li>
+              <li><a href="#"><i class="fas fa-shopping-cart"></i> Historial de Compras</a></li>
+              <li id="logout-btn"><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1 class="page-title">Tienda Gravity</h1>
+            <p class="page-subtitle">Usa tus puntos para canjear recompensas exclusivas.</p>
+        </div>
+
+        <section class="store-section">
+            <div class="filters-bar" id="category-filters">
+                <button class="filter-btn active" data-category="Todos">Todos</button>
+            </div>
+            <div id="shop-items-grid" class="items-grid"></div>
+        </section>
+    </main>
+    
+    <div id="purchase-modal" class="modal-backdrop hidden">
+        <div class="purchase-modal-content">
+            <button id="close-purchase-modal-btn" class="close-modal-btn">&times;</button>
+            <div id="purchase-item-image" class="purchase-item-image"></div>
+            <div class="purchase-item-details">
+                <h2 id="purchase-item-name">Nombre del Artículo</h2>
+                <p id="purchase-item-description">Descripción detallada.</p>
+                <div class="purchase-actions">
+                    <div id="purchase-with-points-option" class="purchase-option">
+                        <div class="price-tag points"><i class="fas fa-star"></i> <span id="purchase-price-points"></span></div>
+                        <button id="buy-with-points-btn" class="btn-purchase points">Comprar con Puntos</button>
+                        <span class="user-balance-info">Tu saldo: <strong id="user-points-balance">0</strong> Puntos</span>
+                    </div>
+                    <div id="purchase-with-money-option" class="purchase-option">
+                        <div class="price-tag money"><i class="fas fa-dollar-sign"></i> S/ <span id="purchase-price-real"></span></div>
+                        <button id="buy-with-money-btn" class="btn-purchase money">Comprar con Saldo</button>
+                        <span class="user-balance-info">Tu saldo: S/ <strong id="user-money-balance">0.00</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="major-prize-celebration-modal" class="celebration-backdrop hidden">
+        <div class="confetti-container"></div>
+        <div id="money-container" class="confetti-container"></div>
+        <div class="celebration-content">
+            <div class="animated-texts-container"></div>
+            <div class="prize-reveal-box hidden">
+                <div class="prize-modal-icon"><i class="fas fa-gift"></i></div>
+                <h2 class="prize-modal-title">¡Ganaste un Premio Mayor!</h2>
+                <p class="prize-modal-description">Has canjeado con éxito:</p>
+                <p id="prize-name-display" class="prize-name"></p>
+                <div class="claim-code-box">
+                    <span>Código de Reclamo Único:</span>
+                    <strong id="claim-code-display"></strong>
+                </div>
+                <div class="prize-instructions">
+                    <strong>¿Cómo reclamarlo?</strong>
+                    <p>Envía una captura de esta ventana a nuestro WhatsApp de soporte para coordinar la entrega.</p>
+                </div>
+                <div class="prize-modal-actions">
+                    <a id="whatsapp-support-link" href="#" target="_blank" class="btn-primary-prize">Contactar por WhatsApp</a>
+                    <button id="close-prize-modal-btn" class="btn-secondary-prize">Entendido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="message-modal" class="modal-backdrop hidden">
+        <div class="message-modal-content">
+            <h3 id="message-title"></h3>
+            <p id="message-text"></p>
+            <div id="message-buttons" class="message-actions">
+                <button id="message-cancel-btn" class="btn-secondary">Cancelar</button>
+                <button id="message-ok-btn" class="btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="main-footer">
+        <div class="footer-container">
+          <div class="footer-column footer-about">
+              <img src="../home/imagen/logo 1adm blanco y negro.png" alt="Logo Gravity" class="footer-logo" onerror="this.onerror=null;this.src='https://placehold.co/150x50/1A1A1A/ffffff?text=Gravity';">
+              <div class="social-icons">
+                  <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                  <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                  <a href="#" aria-label="Twitch"><i class="fab fa-twitch"></i></a>
+                  <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+              </div>
+          </div>
+          <div class="footer-column footer-links">
+              <h4>Políticas</h4>
+              <ul>
+                  <li><a href="../policies/terminos.html">Términos y condiciones</a></li>
+                  <li><a href="../policies/privacidad.html">Política de privacidad</a></li>
+                  <li><a href="../policies/faq.html">Preguntas frecuentes</a></li>
+                  <li><a href="../policies/cookies.html">Política de cookies</a></li>
+              </ul>
+          </div>
+          <div class="footer-column footer-links">
+              <h4>Nosotros</h4>
+              <ul>
+                  <li><a href="../policies/nosotros.html">¿Quiénes somos?</a></li>
+                  <li><a href="../policies/contacto.html">Contacto</a></li>
+                  <li><a href="../policies/soporte.html">Soporte</a></li>
+              </ul>
+          </div>
+          <div class="footer-column footer-sponsors">
+              <h4>Patrocinadores</h4>
+              <div class="sponsors-container">
+                  <img src="../home/imagen/logo gravity.png" alt="Sponsor 1">
+                  <img src="../home/imagen/logo final gravity.png" alt="Sponsor 2">
+                  <img src="https://placehold.co/100x50/1A1A1A/A8A8A8?text=Sponsor+3" alt="Sponsor 3">
+                  <img src="https://placehold.co/100x50/1A1A1A/A8A8A8?text=Sponsor+4" alt="Sponsor 4">
+              </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Gravity Tournaments. Todos los derechos reservados. Creado por @MiguelGL.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="tienda-app.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gravity Tournaments - Inicio</title>
+  <link rel="stylesheet" href="home.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+  <header class="main-header">
+    <nav class="main-nav">
+      <div class="logo-container">
+        <img src="imagen/logo 1adm blanco y negro.png" alt="Logo Gravity" class="logo-img" onerror="this.onerror=null;this.src='https.placehold.co/150x50/2c2141/ffffff?text=Gravity';" />
+      </div>
+
+      <div class="nav-center">
+        <ul class="nav-links">
+          <li><a href="../home/home.html" class="nav-link active">Inicio</a></li>
+          <li><a href="../torneos/torneos.html" class="nav-link">Torneos</a></li>
+          <li><a href="../tienda/tienda.html" class="nav-link">Tienda</a></li>
+          <li><a href="../billetera/billetera.html" class="nav-link">Billetera</a></li>
+          <li><a href="../mi-equipo/mi-equipo.html" class="nav-link">Mi Equipo</a></li>
+        </ul>
+      </div>
+
+      <div class="profile-section">
+        <div class="profile-icon-container" id="profile-icon">
+          <img id="header-pfp" alt="Foto de perfil" class="header-profile-pic hidden">
+          <i id="header-default-icon" class="fas fa-user-circle profile-icon"></i>
+        </div>
+        <div class="profile-dropdown" id="profile-dropdown">
+          <div class="profile-info">
+            <img id="dropdown-pfp" alt="Foto de perfil" class="dropdown-profile-pic">
+            <div class="user-details">
+              <span id="username-display" class="username">Cargando...</span>
+              <span id="email-display" class="email"></span>
+            </div>
+          </div>
+          <ul class="dropdown-menu">
+            <li><a href="../perfil/perfil.html"><i class="fas fa-user"></i> Ver Perfil</a></li>
+            <li><a href="#"><i class="fas fa-trophy"></i> Historial de Torneos</a></li>
+            <li><a href="#"><i class="fas fa-shopping-cart"></i> Historial de Compras</a></li>
+            <li id="logout-btn"><a href="#"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <section class="hero-section">
+      <div class="hero-text">
+        <h1 class="hero-title">BIENVENIDO A GRAVITY TOURNAMENTS</h1>
+        <p class="hero-description">El universo donde tu habilidad te convierte en leyenda. Compite, conquista y asciende a la cima. ¿Estás listo para desafiar la gravedad?</p>
+        <a href="../torneos/torneos.html" class="cta-button">
+            <i class="fas fa-gamepad"></i> Ver Torneos
+        </a>
+      </div>
+      <div class="hero-image">
+        <img src="imagen/nuevo logo.png" alt="Logo Gravity Grande" onerror="this.onerror=null;this.src='https://placehold.co/400x400/2c2141/ffffff?text=Gravity';">
+      </div>
+    </section>
+  
+    <section class="steps-section">
+      <h2 class="section-title">¿CÓMO PARTICIPAR?</h2>
+      <div class="steps-container">
+        <div class="step-card">
+          <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+          <h3>1. Regístrate</h3>
+          <p>Crea tu cuenta y únete a nuestra comunidad de competidores.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-icon"><i class="fas fa-users"></i></div>
+          <h3>2. Arma tu Equipo</h3>
+          <p>Reúne a tus amigos o encuentra compañeros de equipo en nuestra plataforma.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-icon"><i class="fas fa-trophy"></i></div>
+          <h3>3. Inscríbete</h3>
+          <p>Elige tu torneo favorito e inscribe a tu equipo para la batalla.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-icon"><i class="fas fa-gamepad"></i></div>
+          <h3>4. Compite y Gana</h3>
+          <p>Demuestra tu destreza, acumula victorias y llévate premios increíbles.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-container">
+      <div class="footer-column footer-about">
+          <img src="imagen/logo 1adm blanco y negro.png" alt="Logo Gravity" class="footer-logo" onerror="this.onerror=null;this.src='https://placehold.co/150x50/1A1A1A/ffffff?text=Gravity';">
+          <div class="social-icons">
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="Twitch"><i class="fab fa-twitch"></i></a>
+              <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          </div>
+      </div>
+      <div class="footer-column footer-links">
+          <h4>Políticas</h4>
+          <ul>
+              <li><a href="policies/terminos.html">Términos y condiciones</a></li>
+              <li><a href="policies/privacidad.html">Política de privacidad</a></li>
+              <li><a href="policies/faq.html">Preguntas frecuentes</a></li>
+              <li><a href="policies/cookies.html">Política de cookies</a></li>
+          </ul>
+      </div>
+      <div class="footer-column footer-links">
+          <h4>Nosotros</h4>
+          <ul>
+              <li><a href="policies/nosotros.html">¿Quiénes somos?</a></li>
+              <li><a href="policies/contacto.html">Contacto</a></li>
+              <li><a href="policies/soporte.html">Soporte</a></li>
+          </ul>
+      </div>
+      <div class="footer-column footer-sponsors">
+          <h4>Patrocinadores</h4>
+          <div class="sponsors-container">
+              <img src="imagen/Proximamente.jpg" alt="Sponsor 1">
+              <img src="imagen/Proximamente.jpg" alt="Sponsor 2">
+              <img src="imagen/Proximamente.jpg" alt="Sponsor 3">
+              <img src="imagen/Proximamente.jpg" alt="Sponsor 4">
+          </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Gravity Tournaments. Todos los derechos reservados. Creado por @MiguelGL.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="home-app.js"></script>
+
+</body>
+</html>
